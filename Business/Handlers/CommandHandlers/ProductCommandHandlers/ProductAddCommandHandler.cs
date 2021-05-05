@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.BusinessAspects.Autofac;
 using Business.Commands.ProductCommands;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
@@ -23,8 +24,9 @@ namespace Business.Handlers.CommandHandlers.ProductsCommandHandlers
             _productDal = productDal;
             _mapper = mapper;
         }
-        [CacheRemoveAspect("GetAllProductsQuery", Priority = 2)]
-        [ValidationAspect(typeof(ProductAddRequestValidator),Priority =1)]
+        [SecuredOperation("admin,storeowner", Priority = 1)]
+        [CacheRemoveAspect("GetAllProductsQuery", Priority = 3)]
+        [ValidationAspect(typeof(ProductAddRequestValidator),Priority =2)]
         public async Task<IResult> Handle(ProductAddCommand request, CancellationToken cancellationToken)
         {
             var product = _mapper.Map<Product>(request._product);

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ECommerceAPI</name>
+    </assembly>
+    <members>
+        <member name="M:ECommerceAPI.Controllers.AuthController.RegisterForUser(Entities.DTOs.Request.UserForRegisterRequest)">
+            <summary>
+            User Registration Operation
+            </summary>
+            <param name="registerRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECommerceAPI.Controllers.AuthController.Login(Entities.DTOs.Request.UserForLoginRequest)">
+            <summary>
+            User Login Operation
+            </summary>
+            <param name="loginRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECommerceAPI.Controllers.AuthController.UserUpdate(Entities.DTOs.Request.UserUpdateRequest)">
+            <summary>
+            User Update Operation
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECommerceAPI.Controllers.CartsController.AddToCart(Entities.DTOs.Request.AddProductToCartRequest)">
+            <summary>
+            Adds to the shopping cart or increases the number of items by 1 if the item is in the shopping cart
+            </summary>
+            <param name="cartAddRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECommerceAPI.Controllers.CartsController.UpdateToCart(Entities.Concrete.Cart)">
+            <summary>
+            Updating item in the cart
+            </summary>
+            <param name="cart"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

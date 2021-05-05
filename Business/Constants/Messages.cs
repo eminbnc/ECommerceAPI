@@ -1,6 +1,4 @@
-﻿using Core.Entities.Concrete;
-
-namespace Business.Constants
+﻿namespace Business.Constants
 {
     public class Messages
     {
@@ -17,5 +15,9 @@ namespace Business.Constants
         public static string UserNotFound = "Bilgilere ait kullanıcı bulunmamaktadır!";
         public static string PasswordError = "Kullanıcı şifresi eşleşmedi!";
         public static string AccessTokenCreated = "Giriş başarılı, token oluşturuldu.";
+        public static string UserUpdatedSuccessful = "Kullanıcı güncelleme işlemi başarılı";
+        public static string AddToCartSuccessful = "Ürün başarılı bir şekilde sepete eklendi";
+        public static string ItemsNotInTheCart = "Güncellenmek istenen ürün sepette bulunamadı!";
+        public static string CarUpdateSuccessful = "Sepetiniz başarıyla güncellendi";
     }
 }

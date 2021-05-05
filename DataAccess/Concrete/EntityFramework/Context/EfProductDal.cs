@@ -12,7 +12,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
     {
         public async Task<List<GetProductQueryResponse>> GetProductsByCategoryWithSubCategory(int categoryId, int subCategoryId)
         {
-            using (ECommerceContext context = new ECommerceContext())
+           await using (ECommerceContext context = new ECommerceContext())
             {
                 var response = from s in context.SubCategories
                                join p in context.Products on s.Id equals p.SubCategoryId

@@ -1,4 +1,5 @@
-﻿using Business.Commands.ProductCommands;
+﻿using Business.BusinessAspects.Autofac;
+using Business.Commands.ProductCommands;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspect.Autofac.Caching;
@@ -18,9 +19,9 @@ namespace Business.Handlers.CommandHandlers.ProductCommandHandlers
         {
             _productDal = productDal;
         }
-
-        [CacheRemoveAspect("GetAllProductsQuery", Priority = 2)]
-        [ValidationAspect(typeof(ProductValidator),Priority =1)]
+        [SecuredOperation("admin,storeowner", Priority = 1)]
+        [CacheRemoveAspect("GetAllProductsQuery", Priority = 3)]
+        [ValidationAspect(typeof(ProductValidator),Priority =2)]
         public async Task<IResult> Handle(ProductUpdateCommand request, CancellationToken cancellationToken)
         {
             var checkIfProductExist = await _productDal.Get(p => p.Id == request._product.Id);

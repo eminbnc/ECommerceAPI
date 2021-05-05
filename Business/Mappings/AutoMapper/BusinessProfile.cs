@@ -7,6 +7,8 @@ namespace Business.Mappings.AutoMapper
         {
             CreateMap<Entities.Concrete.Product, Entities.DTOs.Response.GetProductQueryResponse>().ReverseMap();
             CreateMap<Entities.Concrete.Product, Entities.DTOs.Request.ProductAddRequest>().ReverseMap();
+            CreateMap<Entities.DTOs.Response.GetUserResponse, Core.Entities.Concrete.User>().ReverseMap();
+            CreateMap<Entities.Concrete.Cart, Entities.DTOs.Request.AddProductToCartRequest>().ReverseMap();
         }
     }
 }

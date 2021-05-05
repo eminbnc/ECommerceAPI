@@ -3,14 +3,15 @@ using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Context
 {
     public class EfUserDal : EfEntityRepositoryBase<User, ECommerceContext>, IUserDal
     {
-        public List<OperationClaim> GetClaims(User user)
+        public async Task<List<OperationClaim>> GetClaims(User user)
         {
-            using (var context = new ECommerceContext())
+           await using (var context = new ECommerceContext())
             {
                 var result = from operationClaim in context.OperationClaims
                              join userOperationClaim in context.UserOperationClaims

@@ -1,4 +1,5 @@
-﻿using Business.Commands.ProductCommands;
+﻿using Business.BusinessAspects.Autofac;
+using Business.Commands.ProductCommands;
 using Business.Constants;
 using Core.Aspect.Autofac.Caching;
 using Core.Utilities.Results;
@@ -16,7 +17,8 @@ namespace Business.Handlers.CommandHandlers.ProductCommandHandlers
         {
             _productDal = productDal;
         }
-        [CacheRemoveAspect("GetAllProductsQuery", Priority = 1)]
+        [CacheRemoveAspect("GetAllProductsQuery", Priority = 2)]
+        [SecuredOperation("admin,storeowner", Priority = 1)]
         public async Task<IResult> Handle(ProductDeleteCommand request, CancellationToken cancellationToken)
         {
             var checkIfProductExist =await _productDal.Get(p => p.Id == request.ProductId);

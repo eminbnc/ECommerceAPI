@@ -2,16 +2,11 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspect.Autofac.Validation;
-using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -36,7 +31,7 @@ namespace Business.Handlers.CommandHandlers.UserCommandHandler
                 Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
                 return new ErrorDataResult<AccessToken>(Messages.PasswordError);
 
-            var claims = _userDal.GetClaims(userToCheck);
+            var claims =await _userDal.GetClaims(userToCheck);
             var accessToken = _tokenHelper.CreateToken(userToCheck, claims);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
