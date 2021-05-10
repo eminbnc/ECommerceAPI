@@ -29,7 +29,7 @@ namespace Core.Aspect.Autofac.Caching
                 return;
             }
             invocation.Proceed();
-            _cacheManager.Add(key, invocation.ReturnValue, _duration);
+            _cacheManager.Set(key, invocation.ReturnValue, _duration);
         }
 
     }

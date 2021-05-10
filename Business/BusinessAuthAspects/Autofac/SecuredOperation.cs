@@ -1,12 +1,13 @@
-﻿using Business.Constants;
-using Castle.DynamicProxy;
+﻿using Castle.DynamicProxy;
 using Core.Extensions;
 using Core.Utilities.Interceptors;
 using Core.Utilities.IoC;
 using Microsoft.AspNetCore.Http;
 using System;
 using Microsoft.Extensions.DependencyInjection;
-namespace Business.BusinessAspects.Autofac
+using Core.Utilities.HTTPStatusCodeMessages;
+
+namespace Business.BusinessAuthAspects.Autofac
 {
     public class SecuredOperation : MethodInterception
     {
@@ -17,12 +18,13 @@ namespace Business.BusinessAspects.Autofac
         {
             _roles = roles.Split(',');
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
-
         }
 
         protected override void OnBefore(IInvocation invocation)
         {
             var roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
+            if (roleClaims.Count == 0) 
+                throw new Exception(StatusMessages.AuthenticationFailed);
             foreach (var role in _roles)
             {
                 if (roleClaims.Contains(role))
@@ -30,7 +32,7 @@ namespace Business.BusinessAspects.Autofac
                     return;
                 }
             }
-            throw new Exception(Messages.AuthorizationDenied);
+            throw new Exception(StatusMessages.AuthorizationDenied);
         }
     }
 }

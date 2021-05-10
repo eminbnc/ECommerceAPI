@@ -19,6 +19,7 @@ using Core.Utilities.Security.Encryption;
 using System;
 using System.Reflection;
 using System.IO;
+using Core.ErrorCatchMiddleware;
 
 namespace ECommerceAPI
 {
@@ -118,7 +119,7 @@ namespace ECommerceAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ECommerceAPI v1"));
             }
-
+            app.ConfigureCustomExceptionMiddleware();
             app.UseHttpsRedirection();
 
             app.UseRouting();

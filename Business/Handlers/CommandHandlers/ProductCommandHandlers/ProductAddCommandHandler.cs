@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Business.BusinessAspects.Autofac;
+using Business.BusinessAuthAspects.Autofac;
 using Business.Commands.ProductCommands;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
@@ -14,16 +14,18 @@ using System.Threading.Tasks;
 
 namespace Business.Handlers.CommandHandlers.ProductsCommandHandlers
 {
-   
+
     public class ProductAddCommandHandler : IRequestHandler<ProductAddCommand, IResult>
     {
         private readonly IProductDal _productDal;
         private readonly IMapper _mapper;
+      
         public ProductAddCommandHandler(IProductDal productDal,IMapper mapper)
         {
             _productDal = productDal;
             _mapper = mapper;
         }
+        
         [SecuredOperation("admin,storeowner", Priority = 1)]
         [CacheRemoveAspect("GetAllProductsQuery", Priority = 3)]
         [ValidationAspect(typeof(ProductAddRequestValidator),Priority =2)]

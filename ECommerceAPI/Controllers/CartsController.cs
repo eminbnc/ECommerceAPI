@@ -1,4 +1,5 @@
 ﻿using Business.Commands.CartCommand;
+using Business.Queries.CartQueries;
 using Entities.Concrete;
 using Entities.DTOs.Request;
 using MediatR;
@@ -39,6 +40,18 @@ namespace ECommerceAPI.Controllers
             var result = await _mediator.Send(new UpdateProductInCartCommand(cart));
             if (result.Success) return Ok(result);
             return BadRequest(cart);
+        }
+        /// <summary>
+        /// Lists the products in the user's cart
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetItemsInCart(int userId)
+        {
+            var result = await _mediator.Send(new GetItemsInCartQuery(userId));
+            if (result.Success) return Ok(result);
+            return BadRequest(result);
         }
     }
 }

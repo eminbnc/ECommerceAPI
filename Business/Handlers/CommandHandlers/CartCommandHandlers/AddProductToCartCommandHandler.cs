@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Business.BusinessAspects.Autofac;
+using Business.BusinessAuthAspects.Autofac;
 using Business.Commands.CartCommand;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
@@ -23,7 +23,7 @@ namespace Business.Handlers.CommandHandlers.CartCommandHandler
             _mapper = mapper;
         }
         [ValidationAspect(typeof(CartAddRequestValidator),Priority =2)]
-        [SecuredOperation("admin,storeowner,user", Priority = 1)]
+        [SecuredOperation("storeowner,user", Priority = 1)]
         public async Task<IResult> Handle(UpdateProductToCartCommand request, CancellationToken cancellationToken)
         {
             var result =await _cartDal.Get(p => p.UserId == request._cartAddRequest.UserId && p.ProductId == request._cartAddRequest.ProductId);

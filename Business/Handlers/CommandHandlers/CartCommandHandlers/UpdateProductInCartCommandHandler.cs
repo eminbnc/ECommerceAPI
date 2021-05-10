@@ -1,4 +1,4 @@
-﻿using Business.BusinessAspects.Autofac;
+﻿using Business.BusinessAuthAspects.Autofac;
 using Business.Commands.CartCommand;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;

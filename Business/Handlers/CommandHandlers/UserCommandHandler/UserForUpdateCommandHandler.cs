@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Business.BusinessAspects.Autofac;
+using Business.BusinessAuthAspects.Autofac;
 using Business.Commands.UserCommands;
 using Business.Constants;
 using Core.Entities.Concrete;
@@ -7,7 +7,6 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.DTOs.Response;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 

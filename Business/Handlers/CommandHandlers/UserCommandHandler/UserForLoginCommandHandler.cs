@@ -2,6 +2,7 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspect.Autofac.Validation;
+using Core.CrossCuttingConcerns.Caching;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
@@ -9,18 +10,20 @@ using DataAccess.Abstract;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-
 namespace Business.Handlers.CommandHandlers.UserCommandHandler
 {
     public class UserForLoginCommandHandler : IRequestHandler<UserForLoginCommand, IDataResult<AccessToken>>
     {
         private readonly IUserDal _userDal;
         private readonly ITokenHelper _tokenHelper;
-        public UserForLoginCommandHandler(IUserDal userDal, ITokenHelper tokenHelper)
+        private ICacheManager _cacheManager;
+        public UserForLoginCommandHandler(IUserDal userDal, ITokenHelper tokenHelper,ICacheManager cacheManager )
         {
             _userDal = userDal;
             _tokenHelper = tokenHelper;
+            _cacheManager = cacheManager;
         }
+       
         [ValidationAspect(typeof(UserForLoginValidator), Priority = 1)]
         public async Task<IDataResult<AccessToken>> Handle(UserForLoginCommand request, CancellationToken cancellationToken)
         {

@@ -39,5 +39,12 @@
             <param name="cart"></param>
             <returns></returns>
         </member>
+        <member name="M:ECommerceAPI.Controllers.CartsController.GetItemsInCart(System.Int32)">
+            <summary>
+            Lists the products in the user's cart
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
