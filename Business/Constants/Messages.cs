@@ -20,5 +20,22 @@
         public static string CarUpdateSuccessful = "Sepetiniz başarıyla güncellendi";
         public static string ListinItemsInCartSuccessful = "Sepetteki ürünler başarıyla listelendi";
         public static string ProductInCartNotFound = "Sepette ürün bulunamadı!";
+
+        public static string CategoryList = "Kategoriler listelendi";
+
+        public static string CategoryNotFount = "Kategori bulunamadı";
+
+        public static string BrandListSuccessful = "Markalar başarılı birşekildelistelendi";
+
+        public static string BrandNotFound = "Herhangi bir marka bulunamadı";
+
+        public static string CategoriesWithSubCategoriesListed = "Kategoriler alt kategoriler ilebirlikte listelendi";
+
+        public static string SubCategoryListed = "Alt kategoriler listelendi";
+        public static string SubCategoryNotFount = "Alt kategori bulunmadı!";
+
+        public static string ProductListedByBrand = "Markaya ait ürünler listelendi";
+
+        public static string SavedImageAndSentThePath = "Resim kaydedildi ve yolu gönderildi";
     }
 }

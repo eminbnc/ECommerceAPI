@@ -8,7 +8,7 @@ namespace Entities.Concrete
         public int SubCategoryId { get; set; }
         public int StoreId { get; set; }
         public string ProductName { get; set; }
-        public string Brand { get; set; }
+        public int BrandId { get; set; }
         public string Model { get; set; }
         public string Technicality { get; set; }
         public string Description { get; set; }
@@ -18,6 +18,5 @@ namespace Entities.Concrete
         public int Stock { get; set; }
         public bool IsActive { get; set; }
         public string ImagePath { get; set; }
-
     }
 }

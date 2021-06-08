@@ -46,6 +46,27 @@ namespace ECommerceAPI.Controllers
             if (result.Success) return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("category/{categoryId}")]
+        public async Task<IActionResult> GetProductsByCategoryId(int categoryId)
+        {
+            var response = await _mediator.Send(new GetProductsByCategoryIdQuery(categoryId));
+            if (response.Success) return Ok(response);
+            return BadRequest(response);
+        }
+        [HttpGet("getbyunitprice/{minPrice}/{maxPrice}")]
+        public async Task<IActionResult> GetByUnitPrice(decimal minPrice,decimal maxPrice)
+        {
+            var response = await _mediator.Send(new GetByUnitPriceQuery(minPrice, maxPrice));
+            if (response.Success) return Ok(response);
+            return BadRequest(response);
+        }
+        [HttpGet("brands/{brandId}")]
+        public async Task<IActionResult> GetProductsByBrandId(int brandId)
+        {
+            var response = await _mediator.Send(new GetProductsByBrandIdQuery(brandId));
+            if (response.Success) return Ok(response);
+            return BadRequest(response);
+        }
         [HttpPost]
         public async Task<IActionResult> ProductAdd(ProductAddRequest product)
         {

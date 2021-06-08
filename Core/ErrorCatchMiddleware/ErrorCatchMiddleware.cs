@@ -41,12 +41,12 @@ namespace Core.ErrorCatchMiddleware
                 message = e.Message;
                 httpContext.Response.StatusCode = 401;
             }
-            if (e.Message == StatusMessages.AuthorizationDenied)
+            else if (e.Message == StatusMessages.AuthorizationDenied)
             {
                 message = e.Message;
                 httpContext.Response.StatusCode = 403;
             }
-            if (e.GetType() == typeof(ValidationException))
+            else if (e.GetType() == typeof(ValidationException))
             {
                 message = e.Message;
                 errors = ((ValidationException)e).Errors;

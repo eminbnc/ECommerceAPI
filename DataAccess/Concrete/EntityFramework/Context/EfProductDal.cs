@@ -10,6 +10,32 @@ namespace DataAccess.Concrete.EntityFramework.Context
 {
     public class EfProductDal : EfEntityRepositoryBase<Product, ECommerceContext>, IProductDal
     {
+        public async Task<List<GetProductQueryResponse>> GetProductsByCategoryId(int categoryId)
+        {
+            await using (ECommerceContext context = new ECommerceContext())
+            {
+                var response = from s in context.SubCategories
+                               join p in context.Products on s.Id equals p.SubCategoryId
+                               where s.CategoryId == categoryId
+                               select new GetProductQueryResponse
+                               {
+                                   Id = p.Id,
+                                   BrandId = p.BrandId,
+                                   Description = p.Description,
+                                   Discount = p.Discount,
+                                   ImagePath = p.ImagePath,
+                                   Stock = p.Stock,
+                                   StoreId = p.StoreId,
+                                   ProductName = p.ProductName,
+                                   SubCategoryId = p.SubCategoryId,
+                                   Model = p.Model,
+                                   Tax = p.Tax,
+                                   Technicality = p.Technicality,
+                                   UnitPrice = p.UnitPrice
+                               };
+                return response.ToList();
+            }
+        }
         public async Task<List<GetProductQueryResponse>> GetProductsByCategoryWithSubCategory(int categoryId, int subCategoryId)
         {
            await using (ECommerceContext context = new ECommerceContext())
@@ -21,7 +47,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
                                select new GetProductQueryResponse
                                {
                                    Id = p.Id,
-                                   Brand = p.Brand,
+                                   BrandId = p.BrandId,
                                    Description = p.Description,
                                    Discount = p.Discount,
                                    ImagePath = p.ImagePath,

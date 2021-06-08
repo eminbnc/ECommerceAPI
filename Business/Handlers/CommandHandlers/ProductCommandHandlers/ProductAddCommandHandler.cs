@@ -33,7 +33,6 @@ namespace Business.Handlers.CommandHandlers.ProductsCommandHandlers
         {
             var product = _mapper.Map<Product>(request._product);
             await _productDal.Add(product);
-            //await _productDal.SaveChangesAsync();
             return new SuccessResult(Messages.ProductAdded);
         }
     }

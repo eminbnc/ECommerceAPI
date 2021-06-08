@@ -13,7 +13,6 @@
         public decimal Tax { get; set; }
         public decimal Discount { get; set; }
         public int Stock { get; set; }
-        public bool IsActive { get; set; }
         public string ImagePath { get; set; }
     }
 }

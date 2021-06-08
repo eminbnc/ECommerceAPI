@@ -13,6 +13,6 @@ namespace Entities.DTOs.Request
         public string LastName { get; set; }
         public string Telephone { get; set; }
         public bool Status { get; set; }
-        public string UserPhotoUrl { get; set; }
+        public int ImageId { get; set; }
     }
 }
